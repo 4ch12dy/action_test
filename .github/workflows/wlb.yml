@@ -1,0 +1,26 @@
+name: wlb
+on:
+  # push:
+  schedule:
+  - cron: '0 1-13 * * *'
+defaults:
+  run:
+    shell: bash
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+        token: ${{ secrets.MYTOKEN }}
+
+    - name: Check If Wrok And Notify
+      if: github.ref == 'refs/heads/main'
+      env:
+        WX_KEY: ${{ secrets.WX_WATERBOT_KEY }}
+        WLB_KEY: ${{ secrets.WLB_KEY }}
+      run: |-
+        echo "gogooggo..."
+        unzip -P$WLB_KEY wlb.zip -d /tmp
+        python /tmp/wlb.py

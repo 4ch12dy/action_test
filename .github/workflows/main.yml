@@ -1,0 +1,42 @@
+name: main
+
+on: push
+
+jobs:
+  macos-check-jb:
+    name: macos_check
+    runs-on: macos-latest
+    steps:
+      - name: print_macos_env
+        run: |
+          uname -a
+          xcrun -f clang
+          ls -al /Applications
+          ls /
+          echo "check if same macos"
+          sysctl -a | grep -i boot
+          
+          echo "deviceId"
+          system_profiler SPHardwareDataType
+          brew install blacktop/tap/ipsw
+          ipsw version
+          echo "Current Date and Time: $(date)"
+          echo "Current Timezone: $(date +'%Z %z')"
+          echo "-----> done "
+
+  linux-test-jb:
+    name: linux_check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+        token: ${{ secrets.MYTOKEN }}
+
+    - name: unzip
+      env:
+        WLB_KEY: ${{ secrets.WLB_KEY }}
+      run: |
+        uname -a
+        
+        

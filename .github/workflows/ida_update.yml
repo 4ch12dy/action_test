@@ -1,0 +1,44 @@
+name: ida_update
+on:
+  # push:
+  schedule:
+  - cron: '*/5 * * * *'
+defaults:
+  run:
+    shell: bash
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+        token: ${{ secrets.MYTOKEN }}
+
+    - name: Get latest version
+      run: |-
+        cat version.txt
+        echo ""
+        curl --silent --show-error https://hex-rays.com/updida | python -c "import re, sys; print(re.sub(r'<[^>]+?>', '', re.search(r'Latest available version: <strong>IDA and decompilers (.*?)</strong>', sys.stdin.read()).group(1)))" >version.txt
+        cat version.txt
+    - name: Notify and commit if dirty
+      if: github.ref == 'refs/heads/main'
+      env:
+        WX_KEY: ${{ secrets.WXKEY }}
+      run: |-
+        if [ -n "$(git status --porcelain)" ]; then
+            version=$(cat version.txt)
+            echo $version
+            curl "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=$WX_KEY" -H 'Content-Type: application/json' -d "
+            {
+                  \"msgtype\": \"text\",
+                  \"text\": {
+                    \"content\": \"版本更新:${version}\"
+                  }
+            }"
+        	git config --global user.name 'GitHub Actions'
+        	git config --global user.email "$(whoami)@$(hostname --fqdn)"
+        	git add --all
+        	git commit --all --message 'IDA updated'
+        	git push
+        fi
