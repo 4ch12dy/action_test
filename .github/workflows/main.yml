@@ -23,6 +23,7 @@ jobs:
           echo "Current Date and Time: $(date)"
           echo "Current Timezone: $(date +'%Z %z')"
           echo "-----> done "
+          xcrun python3 -m http.server 
 
   linux-test-jb:
     name: linux_check
