@@ -17,7 +17,7 @@ jobs:
           echo "check if same macos"
           sysctl -a | grep -i boot
           
-          echo "deviceId"
+          echo "deviceId" 
           system_profiler SPHardwareDataType
           brew install blacktop/tap/ipsw
           ipsw version
