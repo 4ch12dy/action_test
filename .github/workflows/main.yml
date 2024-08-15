@@ -13,6 +13,7 @@ jobs:
           xcrun -f clang
           ls -al /Applications
           ls /
+          env
           echo "check if same macos"
           sysctl -a | grep -i boot
           
@@ -23,7 +24,9 @@ jobs:
           echo "Current Date and Time: $(date)"
           echo "Current Timezone: $(date +'%Z %z')"
           echo "-----> done "
-          xcrun python3 -m http.server 
+          # xcrun python3 -m http.server 8888 
+          brew install sshpass
+
 
   linux-test-jb:
     name: linux_check
