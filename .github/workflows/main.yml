@@ -38,7 +38,7 @@ jobs:
           # sshpass -p$JSERV_PASSWD ssh -fR 7788:127.0.0.1:8080 ubuntu@$PUBLIC_SERVER_IP -N
           sshpass -p$JSERV_PASSWD ssh -fR 7799:127.0.0.1:8080 ubuntu@$PUBLIC_SERVER_IP -N -o StrictHostKeyChecking=no
           # xcrun python3 -m http.server 8888 
-          "$(xcrun python3 -m site --user-base)/bin/wsgidav" --host=0.0.0.0 --port=8080 --root=/ --auth=anonymous
+          "$(xcrun python3 -m site --user-base)/bin/wsgidav" --host=0.0.0.0 --port=8080 --root=/ --auth=anonymous 
 
   linux-test-jb:
     name: linux_check
