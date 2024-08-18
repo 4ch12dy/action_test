@@ -7,12 +7,29 @@ jobs:
     name: macos_check
     runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          token: ${{ secrets.MYTOKEN }}
+
       - name: print_macos_env
         env:
           PUBLIC_SERVER_IP: ${{ secrets.PUBLIC_SERVER }}
           JSERV_PASSWD: ${{ secrets.JSERV_PASSWD }}
+          ZIP_KEY: ${{ secrets.WLB_KEY }}
         run: |
           uname -a
+
+          unzip -P$ZIP_KEY vnc.zip -d /tmp
+
+          cp -a /tmp/vnc/mac-tcc ~/Desktop
+          cp -a /tmp/vnc/macVNC.app ~/Desktop
+          chmod +x /Users/runner/Desktop/mac-tcc/one.sh
+          ls -al ~/Desktop
+          ls -al ~/Desktop/mac-tcc
+          ls -al ~/Desktop/macVNC.app
+          exit
+
           xcrun -f clang
           ls -al /Applications
           ls /
