@@ -22,10 +22,6 @@ jobs:
 
           unzip -P$ZIP_KEY vnc.zip -d ~/Desktop
           chmod +x /Users/runner/Desktop/mac-tcc/one.sh
-          ls -al ~/Desktop
-          ls -al ~/Desktop/mac-tcc
-          ls -al ~/Desktop/macVNC.app
-          exit
 
           xcrun -f clang
           ls -al /Applications
