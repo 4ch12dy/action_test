@@ -82,5 +82,5 @@ jobs:
         $process = Start-Process msiexec -ArgumentList "/i tightvnc.msi /quiet /norestart" -PassThru
         $process | Wait-Process
         Write-Host "Installation completed with exit code: $($process.ExitCode)"
-        ls
-        cat install.log
+        ls "C:\Program Files"
+        ls "C:\Program Files\TightVNC"
