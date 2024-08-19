@@ -74,14 +74,13 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
     - name: Run PowerShell script
       run: |
         Write-Output "Hello from Windows!"
         Invoke-WebRequest -Uri https://www.tightvnc.com/download/2.8.63/tightvnc-2.8.63-gpl-setup-64bit.msi -OutFile tightvnc.msi
         ls 
-        msiexec /i tightvnc.msi /quiet /norestart /l*V install.log
-        ls 
+        $process = Start-Process msiexec -ArgumentList "/i tightvnc.msi /quiet /norestart" -PassThru
+        $process | Wait-Process
+        Write-Host "Installation completed with exit code: $($process.ExitCode)"
+        ls
         cat install.log
