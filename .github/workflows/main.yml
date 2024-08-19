@@ -77,9 +77,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup PowerShell
-      uses: actions/setup-powershell@v3
-
     - name: Run PowerShell script
       run: |
         Write-Output "Hello from Windows!"
