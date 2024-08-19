@@ -91,3 +91,5 @@ jobs:
         } else {
             "PowerShell is not running as Administrator."
         }
+
+        runas /user:Administrator "ls.exe"
