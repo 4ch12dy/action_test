@@ -85,4 +85,3 @@ jobs:
         ls "C:\Program Files"
         ls "C:\Program Files\TightVNC"
         netsh advfirewall show allprofiles
-        "C:\Program Files\TightVNC\tvnserver.exe" -run
