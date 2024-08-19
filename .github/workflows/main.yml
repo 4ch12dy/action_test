@@ -29,7 +29,7 @@ jobs:
           env
           echo "check if same macos"
           sysctl -a | grep -i boot
-          
+          exit
           echo "deviceId" 
           system_profiler SPHardwareDataType
           brew install blacktop/tap/ipsw
@@ -80,4 +80,6 @@ jobs:
     - name: Run PowerShell script
       run: |
         Write-Output "Hello from Windows!"
-        # 你可以在这里添加更多的 PowerShell 命令或脚本
+        Invoke-WebRequest -Uri https://www.tightvnc.com/download/2.8.63/tightvnc-2.8.63-gpl-setup-64bit.msi -OutFile tightvnc.msi
+        msiexec /i tightvnc.msi /quiet /norestart /l*V install.log
+        cat install.log
