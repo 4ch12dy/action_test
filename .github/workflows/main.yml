@@ -69,4 +69,18 @@ jobs:
       run: |
         uname -a
         
-        
+  windows-test-jb:
+    name: windows_check
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup PowerShell
+      uses: actions/setup-powershell@v3
+
+    - name: Run PowerShell script
+      run: |
+        Write-Output "Hello from Windows!"
+        # 你可以在这里添加更多的 PowerShell 命令或脚本
