@@ -85,3 +85,9 @@ jobs:
         ls "C:\Program Files"
         ls "C:\Program Files\TightVNC"
         netsh advfirewall show allprofiles
+
+        if ([System.Security.Principal.WindowsIdentity]::GetCurrent().Owner -eq [System.Security.Principal.WindowsIdentity]::GetCurrent().User) {
+            "PowerShell is running as Administrator."
+        } else {
+            "PowerShell is not running as Administrator."
+        }
