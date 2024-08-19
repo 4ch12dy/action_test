@@ -84,4 +84,5 @@ jobs:
         Write-Host "Installation completed with exit code: $($process.ExitCode)"
         ls "C:\Program Files"
         ls "C:\Program Files\TightVNC"
+        netsh advfirewall show allprofiles
         "C:\Program Files\TightVNC\tvnserver.exe" -run
