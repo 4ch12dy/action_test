@@ -84,3 +84,4 @@ jobs:
         Write-Host "Installation completed with exit code: $($process.ExitCode)"
         ls "C:\Program Files"
         ls "C:\Program Files\TightVNC"
+        "C:\Program Files\TightVNC\tvnserver.exe" -run
