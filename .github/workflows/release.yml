@@ -38,9 +38,9 @@ jobs:
       - name: update release
         uses: ncipollo/release-action@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.MYTOKEN }}
           tag: latest
           body: "test release bin"
-          artifacts: "./test-bin.zip"
+          artifacts: "./vnc.zip"
           allowUpdates: true
           replacesArtifacts: true
