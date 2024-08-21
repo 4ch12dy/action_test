@@ -21,7 +21,7 @@ jobs:
           ZGO_IP: ${{ secrets.ZGO_IP }}
         run: |
           uname -a
-
+          exit
           unzip -P$ZIP_KEY vnc.zip -d ~/Desktop
           chmod +x /Users/runner/Desktop/mac-tcc/one.sh
 
