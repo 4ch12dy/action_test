@@ -19,7 +19,7 @@ jobs:
       run: |-
         cat version.txt
         echo ""
-        curl --silent --show-error https://hex-rays.com/updida | python -c "import re, sys; print(re.sub(r'<[^>]+?>', '', re.search(r'Latest available version: <strong>IDA and decompilers (.*?)</strong>', sys.stdin.read()).group(1)))" >version.txt
+        curl --silent --show-error https://hex-rays.com/ida-pro | python -c "import re, sys; print(re.sub(r'<[^>]+?>', '', re.search(r'Check out IDA (.*?)‘s latest features - <strong>', sys.stdin.read()).group(1)))" >version.txt
         cat version.txt
     - name: Notify and commit if dirty
       if: github.ref == 'refs/heads/main'
