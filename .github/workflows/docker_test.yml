@@ -5,11 +5,12 @@ on: push
 
 jobs:
     docker_test:
+        name: docker_test
         runs-on: ubuntu-latest
         steps:
-        - name: Start SSH via tmate
-        uses: P3TERX/ssh2actions@main
-        env:
+        - uses: P3TERX/ssh2actions@main
+          name: Start SSH via tmate
+          env:
             TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
             TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
