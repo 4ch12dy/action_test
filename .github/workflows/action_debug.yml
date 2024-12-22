@@ -2,7 +2,9 @@
 
 name: action_debug
 on:
-  push
+  push:
+    branches:
+      - 'action_debug/*'
 
 jobs:
   debug:
