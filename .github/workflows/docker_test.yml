@@ -20,6 +20,13 @@ jobs:
                     RUN yes | sudo pacman -Syyu' Dockerfile
             docker build -t emcc-obf .
         
+        - uses: 4ch12dy/debugger-action@v2.2
+          name: debugger
+          timeout-minutes: 30
+          continue-on-error: true
+          with:
+            ngrok_token: ${{ secrets.NGROK_TOKEN }}
+
         - uses: P3TERX/ssh2actions@main
           name: Start SSH via tmate
           env:
