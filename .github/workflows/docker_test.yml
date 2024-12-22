@@ -17,6 +17,12 @@ jobs:
                     RUN yes | sudo pacman-key --populate archlinux \
                     RUN yes | sudo pacman -Syyu' Dockerfile
             docker build -t emcc-obf .
+        
+        - uses: P3TERX/ssh2actions@main
+          name: Start SSH via tmate
+          env:
+            TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+            TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     # docker_test:
     #     name: docker_test
     #     runs-on: ubuntu-latest
