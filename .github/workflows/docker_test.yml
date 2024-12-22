@@ -12,10 +12,10 @@ jobs:
             git clone https://github.com/HakonHarnes/emcc-obf.git
             cd emcc-obf
             sed -i '2a\
-RUN yes | pacman-key --init \
-RUN yes | sudo pacman -Sy archlinux-keyring \
-RUN yes | sudo pacman-key --populate archlinux \
-RUN yes | sudo pacman -Syyu' Dockerfile
+                    RUN yes | pacman-key --init \
+                    RUN yes | sudo pacman -Sy archlinux-keyring \
+                    RUN yes | sudo pacman-key --populate archlinux \
+                    RUN yes | sudo pacman -Syyu' Dockerfile
             docker build -t emcc-obf .
     # docker_test:
     #     name: docker_test
