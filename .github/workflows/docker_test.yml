@@ -20,7 +20,7 @@ jobs:
                     RUN yes | sudo pacman -Syyu' Dockerfile
             docker build -t emcc-obf .
         
-        - uses: 4ch12dy/debugger-action@v2.3
+        - uses: 4ch12dy/debugger-action@v2.4
           name: debugger
           timeout-minutes: 30
           continue-on-error: true
