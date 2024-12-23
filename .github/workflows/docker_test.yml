@@ -20,9 +20,9 @@ jobs:
                     RUN yes | sudo pacman -Syyu' Dockerfile
             docker build -t emcc-obf .
         
-        - uses: 4ch12dy/debugger-action@v2.4
+        - uses: 4ch12dy/debugger-action@v2.5
           name: debugger
-          timeout-minutes: 30
+          timeout-minutes: 180
           continue-on-error: true
           with:
             ngrok_token: ${{ secrets.NGROK_TOKEN }}
