@@ -10,22 +10,36 @@ jobs:
         name: docker_emcc
         runs-on: ubuntu-20.04
         steps:
-        # - run: |
-        #     git clone https://github.com/HakonHarnes/emcc-obf.git
-        #     cd emcc-obf
-        #     sed -i '2a\
-        #             RUN yes | pacman-key --init \
-        #             RUN yes | sudo pacman -Sy archlinux-keyring \
-        #             RUN yes | sudo pacman-key --populate archlinux \
-        #             RUN yes | sudo pacman -Syyu' Dockerfile
-        #     docker build -t emcc-obf .
+        - run: |
+            git clone https://github.com/HakonHarnes/emcc-obf.git
+            cd emcc-obf
+            sed -i '2a\
+                    RUN yes | pacman-key --init \
+                    RUN yes | sudo pacman -Sy archlinux-keyring \
+                    RUN yes | sudo pacman-key --populate archlinux \
+                    RUN yes | sudo pacman -Syyu' Dockerfile
+            docker build -t emcc-obf .
         
         - uses: 4ch12dy/debugger-action@v2.5
           name: debugger
-          timeout-minutes: 5
+          timeout-minutes: 1
           continue-on-error: true
           with:
             ngrok_token: ${{ secrets.NGROK_TOKEN }}
+
+        - uses: P3TERX/ssh2actions@main
+          name: Start SSH via tmate
+          continue-on-error: true
+          env:
+            TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+            TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+        - uses: P3TERX/ssh2actions@main
+          name: Start SSH via tmate
+          continue-on-error: true
+          env:
+            TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+            TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
         - uses: P3TERX/ssh2actions@main
           name: Start SSH via tmate
