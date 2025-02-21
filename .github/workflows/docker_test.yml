@@ -10,13 +10,6 @@ jobs:
         name: docker_emcc
         runs-on: ubuntu-latest
         steps:
-        - uses: P3TERX/ssh2actions@main
-          name: Start SSH via tmate
-          continue-on-error: true
-          env:
-            TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-            TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        
         - run: |
             git clone https://github.com/HakonHarnes/emcc-obf.git
             cd emcc-obf
