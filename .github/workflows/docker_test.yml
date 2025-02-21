@@ -8,7 +8,7 @@ on:
 jobs:
     cron-docker_emcc:
         name: docker_emcc
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-latest
         steps:
         - run: |
             git clone https://github.com/HakonHarnes/emcc-obf.git
